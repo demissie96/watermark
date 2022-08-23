@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import Canvas from "./Canvas";
 import { InputToImage, ImageToCanvas, Download } from "./Functions";
-import { ImageDimensions } from "./Functions";
+import { ImageDimensions, AddWatermark } from "./Functions";
 
 function App() {
   const [imageHeight, setImageHeight] = useState(500);
@@ -27,6 +27,7 @@ function App() {
     <div>
       <input type="file" id="file" onChange={(e) => InputToImage(e)} />
       <button onClick={() => GroupedFunction()}>Image to Canvas</button>
+      <button onClick={() => AddWatermark()}>AddWatermark</button>
       <div>
         <button onClick={refreshPage}>Reset</button>
       </div>
