@@ -19,10 +19,17 @@ function App() {
     }, 500);
   }
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div>
       <input type="file" id="file" onChange={(e) => InputToImage(e)} />
       <button onClick={() => GroupedFunction()}>Image to Canvas</button>
+      <div>
+        <button onClick={refreshPage}>Reset</button>
+      </div>
       <h3>Uploaded Image: </h3>
       <img id="my_picture" />
       <div class="container">
