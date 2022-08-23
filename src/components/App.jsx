@@ -32,7 +32,7 @@ function App() {
       </div>
       <h3>Uploaded Image: </h3>
       <img id="my_picture" />
-      <div class="container">
+      <div className="container">
         <Canvas height={imageHeight} width={imageWidth} />
       </div>
 

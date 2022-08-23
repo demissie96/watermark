@@ -3,11 +3,13 @@ var ctx;
 var canvas;
 var img;
 
+// Send uploaded image to img element in App.jsx
 export function InputToImage(event) {
   var image = document.getElementById("my_picture");
   image.src = URL.createObjectURL(event.target.files[0]);
 }
 
+// Get the dimensions of the image and return
 export function ImageDimensions() {
   img = document.getElementById("my_picture");
   console.log("Image height: " + img.height);
@@ -15,14 +17,9 @@ export function ImageDimensions() {
   return [img.height, img.width];
 }
 
+// Draw image to canvas
 export function ImageToCanvas() {
   img = document.getElementById("my_picture");
-  // console.log("Image height: " + img.height);
-  // console.log("Image width: " + img.width);
-
-  //   document.getElementById("myCanvas").style.width = `${img.width}px`;
-  //   document.getElementById("myCanvas").style.height = `${img.height}px`;
-
   c = document.getElementById("myCanvas");
   ctx = c.getContext("2d");
   canvas = ctx.canvas;
@@ -33,8 +30,7 @@ export function ImageToCanvas() {
   var centerShift_x = (canvas.width - img.width * ratio) / 2;
   var centerShift_y = (canvas.height - img.height * ratio) / 2;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //   ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
-  //                    0, 0, canvas.width, canvas.height); // destination rectangle
+  
   ctx.drawImage(
     img,
     0,
@@ -47,6 +43,7 @@ export function ImageToCanvas() {
     img.height * ratio
   );
 
+  // Add text to canvas
   ctx.globalAlpha = 0.4;
   ctx.font = "30px Arial";
   ctx.fillStyle = "white";
@@ -57,7 +54,7 @@ export function ImageToCanvas() {
   ctx.fillText("Hello World 1", canvas.width / 1.05, canvas.height / 2.5);
 }
 
-// canvas id: myCanvas
+// Download the edited picture in canvas
 export function Download() {
   var link = document.createElement("a");
   link.download = "filename.png";
