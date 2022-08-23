@@ -2,12 +2,8 @@ import React from "react";
 import { useState } from "react";
 import "./App.css";
 import Canvas from "./Canvas";
-import {
-  InputToImage,
-  ImageToCanvas,
-  Download,
-  ImageDimensions,
-} from "./Functions";
+import { InputToImage, ImageToCanvas, Download } from "./Functions";
+import { ImageDimensions } from "./Functions";
 
 function App() {
   const [imageHeight, setImageHeight] = useState(500);
@@ -18,8 +14,9 @@ function App() {
     console.log(imgProps[0] + " + " + imgProps[1]);
     setImageHeight(imgProps[0]);
     setImageWidth(imgProps[1]);
-    setTimeout(() => {  ImageToCanvas(); }, 500);
-    
+    setTimeout(() => {
+      ImageToCanvas();
+    }, 500);
   }
 
   return (
