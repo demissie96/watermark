@@ -1,0 +1,19 @@
+h3 {
+    color: red;
+}
+
+canvas {
+    opacity: 1;   
+}
+
+#my_picture {
+    position: absolute;
+    visibility: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
