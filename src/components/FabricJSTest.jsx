@@ -14,7 +14,7 @@ function FabricJSTest() {
     new fabric.Canvas("canvas", {
       height: 500,
       width: 800,
-      backgroundColor: "powderblue"
+      backgroundColor: null,
     });
 
   // Invoke the function upon initial rendering of the DOM
@@ -27,9 +27,23 @@ function FabricJSTest() {
       fill: "red",
       width: 250,
       cursorColor: "blue",
-      opacity: opacity
+      opacity: opacity,
     });
     canvas.add(text);
+  }
+
+  function AddImage() {
+    var imgElement = document.getElementById("my_picture");
+    var imgInstance = new fabric.Image(imgElement, {
+      left: 0,
+      top: 0,
+      angle: 0,
+      opacity: 1,
+    });
+    canvas.setBackgroundImage(imgInstance, canvas.renderAll.bind(canvas), {
+      scaleX: canvas.width / imgInstance.width,
+      scaleY: canvas.height / imgInstance.height
+   });
   }
 
   function Slider(event) {
@@ -63,6 +77,9 @@ function FabricJSTest() {
         </button>
         <button type="button" onClick={() => DeleteObject()}>
           Delete
+        </button>
+        <button type="button" onClick={() => AddImage()}>
+          Add Image
         </button>
         <input
           type="range"
