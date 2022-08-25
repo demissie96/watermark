@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 
-function App() {
+function FabricJSTest() {
   // Define a state variable to store and access the fabric.Canvas object
   const [canvas, setCanvas] = useState("");
 
@@ -87,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default FabricJSTest;

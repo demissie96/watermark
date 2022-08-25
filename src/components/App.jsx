@@ -4,6 +4,7 @@ import "./App.css";
 import Canvas from "./Canvas";
 import { InputToImage, ImageToCanvas, Download } from "./Functions";
 import { ImageDimensions, AddWatermark } from "./Functions";
+import FabricJSTest from "./FabricJSTest";
 
 function App() {
   const [imageHeight, setImageHeight] = useState(500);
@@ -34,7 +35,7 @@ function App() {
       <h3>Uploaded Image: </h3>
       <img id="my_picture" />
       <div className="container">
-        <Canvas height={imageHeight} width={imageWidth} />
+        <FabricJSTest />
       </div>
 
       <button id="download" onClick={() => Download()}>
