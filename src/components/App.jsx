@@ -7,6 +7,7 @@ import { ImageDimensions, AddWatermark } from "./Functions";
 import FabricJSTest from "./FabricJSTest";
 
 function App() {
+  const [uploaded, setUploaded] = useState(false);
   const [imageHeight, setImageHeight] = useState(500);
   const [imageWidth, setImageWidth] = useState(800);
 
@@ -18,6 +19,7 @@ function App() {
       setImageHeight(imgProps[0]);
       setImageWidth(imgProps[1]);
       setTimeout(() => {
+        setUploaded(true);
         ImageToCanvas();
       }, 500);
     }, 200);
@@ -36,13 +38,17 @@ function App() {
       </div>
       <h3>Uploaded Image: </h3>
       <img id="my_picture" />
-      <div id="layer1">
-        <FabricJSTest height={imageHeight} width={imageWidth} />
-      </div>
+      {uploaded && (
+        <div id="canvas-div">
+          <div id="layer1">
+            <FabricJSTest height={imageHeight} width={imageWidth} />
+          </div>
 
-      <button id="download" onClick={() => Download()}>
-        Download
-      </button>
+          <button id="download" onClick={() => Download()}>
+            Download
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { fabric } from "fabric";
 import "./FabricJSTest.css";
 
 function FabricJSTest({ height, width }) {
+
   // Define a state variable to store and access the fabric.Canvas object
   const [canvas, setCanvas] = useState("");
 
@@ -112,7 +113,7 @@ function FabricJSTest({ height, width }) {
         height={width}
         style={{
           border: "1px solid #000000",
-          maxWidth: "800px",
+          maxWidth: `${ 500 * (width / height) }px`,
           maxHeight: "500px",
         }}
       ></canvas>
