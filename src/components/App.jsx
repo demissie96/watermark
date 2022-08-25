@@ -36,13 +36,8 @@ function App() {
       </div>
       <h3>Uploaded Image: </h3>
       <img id="my_picture" />
-      <div id="canvas-container" style={{ position: "relative" }}>
-        <div id="layer1">
-          <Canvas height={imageHeight} width={imageWidth} />
-        </div>
-        <div id="layer2">
-          <FabricJSTest />
-        </div>
+      <div id="layer1">
+        <FabricJSTest height={imageHeight} width={imageWidth} />
       </div>
 
       <button id="download" onClick={() => Download()}>

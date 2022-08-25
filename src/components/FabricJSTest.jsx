@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 
-function FabricJSTest() {
+function FabricJSTest({ height, width }) {
   // Define a state variable to store and access the fabric.Canvas object
   const [canvas, setCanvas] = useState("");
 
@@ -23,11 +23,14 @@ function FabricJSTest() {
   }, []);
 
   function Draw() {
-    var text = new fabric.Textbox("Hello world", {
+    var text = new fabric.Textbox("Watermark...", {
       fill: "red",
+      fontSize: 40,
       width: 250,
       cursorColor: "blue",
       opacity: opacity,
+      top: 20,
+      left: 20,
     });
     canvas.add(text);
   }
@@ -40,10 +43,12 @@ function FabricJSTest() {
       angle: 0,
       opacity: 1,
     });
+    canvas.setWidth(imgInstance.width);
+    canvas.setHeight(imgInstance.height);
     canvas.setBackgroundImage(imgInstance, canvas.renderAll.bind(canvas), {
       scaleX: canvas.width / imgInstance.width,
-      scaleY: canvas.height / imgInstance.height
-   });
+      scaleY: canvas.height / imgInstance.height,
+    });
   }
 
   function Slider(event) {
@@ -81,6 +86,9 @@ function FabricJSTest() {
         <button type="button" onClick={() => AddImage()}>
           Add Image
         </button>
+        <button type="button" onClick={() => canvas.discardActiveObject().renderAll()}>
+          Deactivate
+        </button>
         <input
           type="range"
           id="opacity"
@@ -96,9 +104,11 @@ function FabricJSTest() {
       <br />
       <canvas
         id="canvas"
-        width="800"
-        height="500"
-        style={{ border: "1px solid #000000" }}
+        width={height}
+        height={width}
+        style={{
+          border: "1px solid #000000",
+        }}
       ></canvas>
     </>
   );

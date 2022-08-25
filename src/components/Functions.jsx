@@ -43,6 +43,6 @@ export function AddWatermark() {
 export function Download() {
   var link = document.createElement("a");
   link.download = "filename.png";
-  link.href = document.getElementById("myCanvas").toDataURL();
+  link.href = document.getElementById("canvas").toDataURL();
   link.click();
 }
