@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
+import "./FabricJSTest.css";
 
 function FabricJSTest({ height, width }) {
   // Define a state variable to store and access the fabric.Canvas object
@@ -86,7 +87,10 @@ function FabricJSTest({ height, width }) {
         <button type="button" onClick={() => AddImage()}>
           Add Image
         </button>
-        <button type="button" onClick={() => canvas.discardActiveObject().renderAll()}>
+        <button
+          type="button"
+          onClick={() => canvas.discardActiveObject().renderAll()}
+        >
           Deactivate
         </button>
         <input
@@ -108,6 +112,8 @@ function FabricJSTest({ height, width }) {
         height={width}
         style={{
           border: "1px solid #000000",
+          maxWidth: "800px",
+          maxHeight: "500px",
         }}
       ></canvas>
     </>
