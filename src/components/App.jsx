@@ -1,9 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import Canvas from "./Canvas";
-import { InputToImage, ImageToCanvas, Download } from "./Functions";
-import { ImageDimensions, AddWatermark } from "./Functions";
+import { InputToImage, Download, ImageDimensions } from "./Functions";
 import FabricJSTest from "./FabricJSTest";
 
 function App() {
@@ -12,19 +10,22 @@ function App() {
   const [imageWidth, setImageWidth] = useState(800);
 
   function GroupedFunction(e) {
+    // Send uploaded image to img element
     InputToImage(e);
+
     setTimeout(() => {
+      // Get uploaded image dimensions to set canvas size
       let imgProps = ImageDimensions();
-      console.log(imgProps[0] + " + " + imgProps[1]);
       setImageHeight(imgProps[0]);
       setImageWidth(imgProps[1]);
       setTimeout(() => {
+        // Create canvas with conditional rendering after we know the required size of it
         setUploaded(true);
-        ImageToCanvas();
       }, 500);
     }, 200);
   }
 
+  // Reset the page to delete everything
   function refreshPage() {
     window.location.reload(false);
   }
@@ -32,7 +33,7 @@ function App() {
   return (
     <div>
       <input type="file" id="file" onChange={(e) => GroupedFunction(e)} />
-      <button onClick={() => AddWatermark()}>AddWatermark</button>
+
       <div>
         <button onClick={refreshPage}>Reset</button>
       </div>

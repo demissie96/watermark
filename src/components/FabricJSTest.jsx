@@ -9,7 +9,8 @@ function FabricJSTest({ height, width }) {
 
   // Opacity
   const [opacity, setOpacity] = useState(0.5);
-  const [opacityPercent, setOpacityPercent] = useState(50);
+  // Transparency
+  const [transparency, setTransparency] = useState(50);
 
   // Create a function that returns a fabric.Canvas object
   const initCanvas = () =>
@@ -24,6 +25,7 @@ function FabricJSTest({ height, width }) {
     setCanvas(initCanvas());
   }, []);
 
+  // Add text to the canvas
   function Draw() {
     var text = new fabric.Textbox("Watermark...", {
       fill: "red",
@@ -36,8 +38,10 @@ function FabricJSTest({ height, width }) {
     });
     canvas.add(text);
   }
-
+  
+  // Add canvas a background image
   function AddImage() {
+    // Create an image instance
     var imgElement = document.getElementById("my_picture");
     var imgInstance = new fabric.Image(imgElement, {
       left: 0,
@@ -45,6 +49,7 @@ function FabricJSTest({ height, width }) {
       angle: 0,
       opacity: 1,
     });
+    // Make the image fit into the canvas
     canvas.setWidth(imgInstance.width);
     canvas.setHeight(imgInstance.height);
     canvas.setBackgroundImage(imgInstance, canvas.renderAll.bind(canvas), {
@@ -53,27 +58,28 @@ function FabricJSTest({ height, width }) {
     });
   }
 
+  // Change the opacity with slider
   function Slider(event) {
     setOpacity(event.target.value / -100);
+    // Calculate transparency from opacity value
     let x = 100 - event.target.value * -1;
-    setOpacityPercent(x);
+    setTransparency(x);
     ChangeOpacity();
-  }
-
-  function DeleteObject() {
-    canvas.remove(canvas.getActiveObject());
   }
 
   function ChangeOpacity() {
     let currentObject = canvas.getActiveObject();
-
     // Set your new property values
     currentObject.opacity = opacity;
-
     // Then you mark the object as "dirty" and render the canvas:
     currentObject.dirty = true;
     canvas.renderAll();
   }
+
+  // Delete selected canvas object
+  function DeleteObject() {
+    canvas.remove(canvas.getActiveObject());
+  }  
 
   return (
     <>
@@ -103,7 +109,7 @@ function FabricJSTest({ height, width }) {
           onChange={(event) => Slider(event)}
           onClick={(event) => Slider(event)}
         />
-        <h3>Transparency: {opacityPercent}%</h3>
+        <h3>Transparency: {transparency}%</h3>
         <h3>The opacity range is {opacity}</h3>
       </div>
       <br />
@@ -113,7 +119,8 @@ function FabricJSTest({ height, width }) {
         height={width}
         style={{
           border: "1px solid #000000",
-          maxWidth: `${ 500 * (width / height) }px`,
+          // Set the aspect ratio of the picture to prevent stretching
+          maxWidth: `${ 500 * (width / height) }px`, 
           maxHeight: "500px",
         }}
       ></canvas>
