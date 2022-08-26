@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./App.css";
 import { InputToImage, Download, ImageDimensions } from "./Functions";
-import FabricJSTest from "./FabricJSTest";
+import FabricJS from "./FabricJS";
 
 function App() {
   const [uploaded, setUploaded] = useState(false);
@@ -42,7 +42,7 @@ function App() {
       {uploaded && (
         <div id="canvas-div">
           <div id="layer1">
-            <FabricJSTest height={imageHeight} width={imageWidth} />
+            <FabricJS height={imageHeight} width={imageWidth} />
           </div>
 
           <button id="download" onClick={() => Download()}>

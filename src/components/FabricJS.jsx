@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import "./FabricJSTest.css";
+import "./FabricJS.css";
 
-function FabricJSTest({ height, width }) {
+function FabricJS({ height, width }) {
 
   // Define a state variable to store and access the fabric.Canvas object
   const [canvas, setCanvas] = useState("");
@@ -128,4 +128,4 @@ function FabricJSTest({ height, width }) {
   );
 }
 
-export default FabricJSTest;
+export default FabricJS;
