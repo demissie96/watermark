@@ -3,7 +3,6 @@ import { fabric } from "fabric";
 import "./FabricJS.css";
 
 function FabricJS({ height, width }) {
-
   // Define a state variable to store and access the fabric.Canvas object
   const [canvas, setCanvas] = useState("");
 
@@ -35,10 +34,13 @@ function FabricJS({ height, width }) {
       opacity: opacity,
       top: 20,
       left: 20,
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontFamily: "arial",
     });
     canvas.add(text);
   }
-  
+
   // Add canvas a background image
   function AddImage() {
     // Create an image instance
@@ -79,7 +81,7 @@ function FabricJS({ height, width }) {
   // Delete selected canvas object
   function DeleteObject() {
     canvas.remove(canvas.getActiveObject());
-  }  
+  }
 
   return (
     <>
@@ -120,7 +122,7 @@ function FabricJS({ height, width }) {
         style={{
           border: "1px solid #000000",
           // Set the aspect ratio of the picture to prevent stretching
-          maxWidth: `${ 500 * (width / height) }px`, 
+          maxWidth: `${500 * (width / height)}px`,
           maxHeight: "500px",
         }}
       ></canvas>

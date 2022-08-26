@@ -1,12 +1,40 @@
-h3 {
-    color: red;
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+}
+* {
+  box-sizing: border-box;
 }
 
+h3 {
+  color: red;
+}
 
 #my_picture {
-    position: absolute;
-    visibility: hidden;
+  position: absolute;
+  visibility: hidden;
 }
 
+#row {
+  display: grid;
+  grid-template-columns: 300px auto;
+  padding: 0;
+  /* Stretch div element to window size */
+  height: 100vh;
+  width: 100vw;
+}
 
-  
+#sidebar {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+#sidebar div {
+  margin: 20px 0 20px;
+  text-align: left;
+}
