@@ -192,7 +192,9 @@ function FabricJS({ height, width }) {
       <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
         <div id="sidebarFabric">
           <div>
-            <h1 style={{ textAlign: "center" }}><RiPenNibFill /> Watermark</h1>
+            <h1 style={{ textAlign: "center" }}>
+              <RiPenNibFill /> Watermark
+            </h1>
           </div>
           <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
             <Button onClick={refreshPage} variant="danger">
@@ -261,7 +263,7 @@ function FabricJS({ height, width }) {
             />
           </div>
           <p>Add Watermark or delete selected element:</p>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginTop: "0" }}>
             <div style={{ margin: "auto" }}>
               <Button onClick={() => Draw()} variant="outline-primary">
                 Add
@@ -273,8 +275,7 @@ function FabricJS({ height, width }) {
               </Button>{" "}
             </div>
           </div>
-
-          <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
+          <div style={{ margin: "20px auto 10px" }} className="d-grid gap-2">
             <Button
               onClick={() => {
                 canvas.discardActiveObject().renderAll();

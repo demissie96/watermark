@@ -28,11 +28,6 @@ function App() {
     }, 200);
   }
 
-  // Reset the page to delete everything
-  function refreshPage() {
-    window.location.reload(false);
-  }
-
   return (
     <div id="row" style={{ visibility: "visible" }}>
       <div
