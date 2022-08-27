@@ -1,15 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import { InputToImage, Download, ImageDimensions } from "./Functions";
+import { InputToImage, ImageDimensions } from "./Functions";
 import FabricJS from "./FabricJS";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import InputGroup from "react-bootstrap/InputGroup";
+import { RiPenNibFill } from "react-icons/ri";
 
 function App() {
   const [uploaded, setUploaded] = useState(false);
@@ -47,7 +43,9 @@ function App() {
         }}
       >
         <div>
-          <h1 style={{ textAlign: "center" }}>Watermark</h1>
+          <h1 style={{ textAlign: "center" }}>
+            <RiPenNibFill /> Watermark
+          </h1>
         </div>
         <div>
           <Form.Group controlId="formFile" className="mb-3">
@@ -62,14 +60,14 @@ function App() {
           margin: "auto",
         }}
       >
-        <h3
+        <div
           style={{
             visibility: uploaded ? "hidden" : "visible",
             position: uploaded ? "absolute" : "relative",
           }}
         >
-          Watermark Editor
-        </h3>
+          <RiPenNibFill style={{fontSize: "140px", color: "red"}}/> 
+        </div>
         <img id="my_picture" />
         {uploaded && (
           <div id="canvas-div">

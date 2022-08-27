@@ -11,10 +11,6 @@ body {
   box-sizing: border-box;
 }
 
-h3 {
-  color: red;
-}
-
 #my_picture {
   position: absolute;
   visibility: hidden;

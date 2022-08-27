@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
+import { RiPenNibFill } from "react-icons/ri";
 
 function FabricJS({ height, width }) {
   // Define a state variable to store and access the fabric.Canvas object
@@ -191,7 +192,7 @@ function FabricJS({ height, width }) {
       <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
         <div id="sidebarFabric">
           <div>
-            <h1 style={{ textAlign: "center" }}>Watermark</h1>
+            <h1 style={{ textAlign: "center" }}><RiPenNibFill /> Watermark</h1>
           </div>
           <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
             <Button onClick={refreshPage} variant="danger">
