@@ -189,106 +189,110 @@ function FabricJS({ height, width }) {
 
   return (
     <>
-      <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
-        <div id="sidebarFabric">
-          <div>
-            <h1 style={{ textAlign: "center" }}>
-              <RiPenNibFill /> Watermark
-            </h1>
-          </div>
-          <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
-            <Button onClick={refreshPage} variant="danger">
-              Reset
-            </Button>{" "}
-          </div>
-          <div>
-            <Form.Control
-              type="text"
-              placeholder="Watermark text here..."
-              onChange={(e) => ChangeText(e.target.value)}
-            />
-          </div>
-          <div style={{ marginBottom: "0" }}>
-            <Form.FloatingLabel>Select font:</Form.FloatingLabel>
-            <Form.Select
-              defaultValue={"arial"}
-              onChange={(e) => ChangeFontFamily(e.target.value)}
-            >
-              <option value="arial">Arial</option>
-              <option value="times new roman">Times New Roman</option>
-            </Form.Select>
-          </div>
-          <div style={{ display: "flex", margin: "0" }}>
-            <div style={{ margin: "auto" }}>
-              <InputGroup className="mb-3">
-                <InputGroup.Text>Bold</InputGroup.Text>
-                <InputGroup.Checkbox
-                  aria-label="Checkbox"
-                  onClick={(e) => ChangeFontWeight(e.target.checked)}
-                />
-              </InputGroup>
+      <div id="rowFabric">
+        <div id="sidebarPlaceHolder">
+          <div id="sidebarFabric">
+            <div>
+              <h1 style={{ textAlign: "center" }}>
+                <RiPenNibFill /> Watermark
+              </h1>
             </div>
-            <div></div>
-
-            <div style={{ margin: "auto" }}>
-              <InputGroup className="mb-3">
-                <InputGroup.Text>Italic</InputGroup.Text>
-                <InputGroup.Checkbox
-                  aria-label="Checkbox"
-                  onClick={(e) => ChangeFontStyle(e.target.checked)}
-                />
-              </InputGroup>
-            </div>
-          </div>
-          <div style={{ marginTop: "0", display: "flex" }}>
-            <p style={{ margin: "auto 0" }}>Color picker:</p>
-            <Form.Control
-              type="color"
-              id="exampleColorInput"
-              defaultValue="#FFFFFF"
-              title="Choose your color"
-              style={{ margin: "0 20px 0" }}
-              onChange={(e) => ChangeColor(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <p>Transparency: {transparency}%</p>
-            <Form.Range
-              defaultValue="-50"
-              min="-100"
-              max="-1"
-              onChange={(event) => Slider(event)}
-              onClick={(event) => Slider(event)}
-            />
-          </div>
-          <p>Add Watermark or delete selected element:</p>
-          <div style={{ display: "flex", marginTop: "0" }}>
-            <div style={{ margin: "auto" }}>
-              <Button onClick={() => Draw()} variant="outline-primary">
-                Add
+            <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
+              <Button onClick={refreshPage} variant="danger">
+                Reset
               </Button>{" "}
             </div>
-            <div style={{ margin: "auto" }}>
-              <Button onClick={() => DeleteObject()} variant="outline-primary">
-                Delete
+            <div>
+              <Form.Control
+                type="text"
+                placeholder="Watermark text here..."
+                onChange={(e) => ChangeText(e.target.value)}
+              />
+            </div>
+            <div style={{ marginBottom: "0" }}>
+              <Form.FloatingLabel>Select font:</Form.FloatingLabel>
+              <Form.Select
+                defaultValue={"arial"}
+                onChange={(e) => ChangeFontFamily(e.target.value)}
+              >
+                <option value="arial">Arial</option>
+                <option value="times new roman">Times New Roman</option>
+              </Form.Select>
+            </div>
+            <div style={{ display: "flex", margin: "0" }}>
+              <div style={{ margin: "auto" }}>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text>Bold</InputGroup.Text>
+                  <InputGroup.Checkbox
+                    aria-label="Checkbox"
+                    onClick={(e) => ChangeFontWeight(e.target.checked)}
+                  />
+                </InputGroup>
+              </div>
+              <div></div>
+
+              <div style={{ margin: "auto" }}>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text>Italic</InputGroup.Text>
+                  <InputGroup.Checkbox
+                    aria-label="Checkbox"
+                    onClick={(e) => ChangeFontStyle(e.target.checked)}
+                  />
+                </InputGroup>
+              </div>
+            </div>
+            <div style={{ marginTop: "0", display: "flex" }}>
+              <p style={{ margin: "auto 0" }}>Color picker:</p>
+              <Form.Control
+                type="color"
+                id="exampleColorInput"
+                defaultValue="#FFFFFF"
+                title="Choose your color"
+                style={{ margin: "0 20px 0" }}
+                onChange={(e) => ChangeColor(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <p>Transparency: {transparency}%</p>
+              <Form.Range
+                defaultValue="-50"
+                min="-100"
+                max="-1"
+                onChange={(event) => Slider(event)}
+                onClick={(event) => Slider(event)}
+              />
+            </div>
+            <p>Add Watermark or delete selected element:</p>
+            <div style={{ display: "flex", marginTop: "0" }}>
+              <div style={{ margin: "auto" }}>
+                <Button onClick={() => Draw()} variant="outline-primary">
+                  Add
+                </Button>{" "}
+              </div>
+              <div style={{ margin: "auto" }}>
+                <Button
+                  onClick={() => DeleteObject()}
+                  variant="outline-primary"
+                >
+                  Delete
+                </Button>{" "}
+              </div>
+            </div>
+            <div style={{ margin: "20px auto 10px" }} className="d-grid gap-2">
+              <Button
+                onClick={() => {
+                  canvas.discardActiveObject().renderAll();
+                  Download();
+                }}
+                variant="primary"
+              >
+                Download
               </Button>{" "}
             </div>
-          </div>
-          <div style={{ margin: "20px auto 10px" }} className="d-grid gap-2">
-            <Button
-              onClick={() => {
-                canvas.discardActiveObject().renderAll();
-                Download();
-              }}
-              variant="primary"
-            >
-              Download
-            </Button>{" "}
           </div>
         </div>
-
-        <div id="workingSpace" style={{ margin: "3%", alignContent: "center" }}>
+        <div id="workingSpace" style={{ margin: "5%" }}>
           <button
             id="addImage"
             style={{ position: "absolute", visibility: "hidden" }}
