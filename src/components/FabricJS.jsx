@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import { InputToImage, Download, ImageDimensions } from "./Functions";
+import { Download } from "./Functions";
 import "./FabricJS.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +16,13 @@ function FabricJS({ height, width }) {
   const [opacity, setOpacity] = useState(0.5);
   // Transparency
   const [transparency, setTransparency] = useState(50);
+  // Font style
+  const [bold, setBold] = useState("normal");
+  const [italic, setItalic] = useState("normal");
+  const [fontName, setFontName] = useState("arial");
+  const [color, setColor] = useState("#FFFFFF");
+  // Watermark text
+  const [watermarkText, setWatermarkText] = useState("Watermark...");
 
   // Create a function that returns a fabric.Canvas object
   const initCanvas = () =>
@@ -36,17 +43,17 @@ function FabricJS({ height, width }) {
 
   // Add text to the canvas
   function Draw() {
-    var text = new fabric.Textbox("Watermark...", {
-      fill: "red",
-      fontSize: 40,
-      width: 250,
+    var text = new fabric.Textbox(watermarkText, {
+      fill: color,
+      fontSize: 60,
+      width: 350,
       cursorColor: "blue",
       opacity: opacity,
       top: 20,
       left: 20,
-      fontStyle: "normal",
-      fontWeight: "normal",
-      fontFamily: "arial",
+      fontStyle: italic,
+      fontWeight: bold,
+      fontFamily: fontName,
     });
     canvas.add(text);
   }
@@ -81,11 +88,13 @@ function FabricJS({ height, width }) {
 
   function ChangeOpacity() {
     let currentObject = canvas.getActiveObject();
-    // Set your new property values
-    currentObject.opacity = opacity;
-    // Then you mark the object as "dirty" and render the canvas:
-    currentObject.dirty = true;
-    canvas.renderAll();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.opacity = opacity;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
   }
 
   // Delete selected canvas object
@@ -98,11 +107,92 @@ function FabricJS({ height, width }) {
     window.location.reload(false);
   }
 
+  // Change font weight
+  function ChangeFontWeight(clicked) {
+    var fontWeight;
+    if (clicked === true) {
+      fontWeight = "bold";
+      setBold("bold");
+    } else {
+      fontWeight = "normal";
+      setBold("normal");
+    }
+    let currentObject = canvas.getActiveObject();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.fontWeight = fontWeight;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
+  }
+
+  // Change font style
+  function ChangeFontStyle(clicked) {
+    var fontStyle;
+    if (clicked === true) {
+      fontStyle = "italic";
+      setItalic("italic");
+    } else {
+      fontStyle = "normal";
+      setItalic("normal");
+    }
+    let currentObject = canvas.getActiveObject();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.fontStyle = fontStyle;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
+  }
+
+  // Change font family
+  function ChangeFontFamily(fontFamilyName) {
+    setFontName(fontFamilyName);
+    let currentObject = canvas.getActiveObject();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.fontFamily = fontFamilyName;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
+  }
+
+  // Change color
+  function ChangeColor(colorHash) {
+    setColor(colorHash);
+    let currentObject = canvas.getActiveObject();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.fill = colorHash;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
+  }
+
+  // Change watermark text
+  function ChangeText(input) {
+    setWatermarkText(input);
+    let currentObject = canvas.getActiveObject();
+    if (currentObject != null) {
+      // Set your new property values
+      currentObject.text = input;
+      // Then you mark the object as "dirty" and render the canvas:
+      currentObject.dirty = true;
+      canvas.renderAll();
+    }
+  }
+
   return (
     <>
-      <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: '100vw' }}>
+      <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
         <div id="sidebarFabric">
-          <h1>Test FabricJS</h1>
+          <div>
+            <h1 style={{ textAlign: "center" }}>Watermark</h1>
+          </div>
           <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
             <Button onClick={refreshPage} variant="danger">
               Reset
@@ -112,50 +202,50 @@ function FabricJS({ height, width }) {
             <Form.Control
               type="text"
               placeholder="Watermark text here..."
-              readOnly
+              onChange={(e) => ChangeText(e.target.value)}
             />
           </div>
           <div style={{ marginBottom: "0" }}>
             <Form.FloatingLabel>Select font:</Form.FloatingLabel>
-            <Form.Select defaultValue={"helvetica"}>
+            <Form.Select
+              defaultValue={"arial"}
+              onChange={(e) => ChangeFontFamily(e.target.value)}
+            >
               <option value="arial">Arial</option>
-              <option value="helvetica">Helvetica</option>
-              <option value="myriad pro">Myriad Pro</option>
-              <option value="delicious">Delicious</option>
-              <option value="verdana">Verdana</option>
-              <option value="georgia">Georgia</option>
-              <option value="courier">Courier</option>
-              <option value="comic sans ms">Comic Sans MS</option>
-              <option value="impact">Impact</option>
-              <option value="monaco">Monaco</option>
-              <option value="optima">Optima</option>
-              <option value="hoefler text">Hoefler Text</option>
-              <option value="plaster">Plaster</option>
-              <option value="engagement">Engagement</option>
+              <option value="times new roman">Times New Roman</option>
             </Form.Select>
           </div>
           <div style={{ display: "flex", margin: "0" }}>
             <div style={{ margin: "auto" }}>
               <InputGroup className="mb-3">
                 <InputGroup.Text>Bold</InputGroup.Text>
-                <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                <InputGroup.Checkbox
+                  aria-label="Checkbox"
+                  onClick={(e) => ChangeFontWeight(e.target.checked)}
+                />
               </InputGroup>
             </div>
             <div></div>
+
             <div style={{ margin: "auto" }}>
               <InputGroup className="mb-3">
                 <InputGroup.Text>Italic</InputGroup.Text>
-                <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                <InputGroup.Checkbox
+                  aria-label="Checkbox"
+                  onClick={(e) => ChangeFontStyle(e.target.checked)}
+                />
               </InputGroup>
             </div>
           </div>
-          <div style={{ marginTop: "0" }}>
-            <Form.Label htmlFor="exampleColorInput">Color picker:</Form.Label>
+          <div style={{ marginTop: "0", display: "flex" }}>
+            <p style={{ margin: "auto 0" }}>Color picker:</p>
             <Form.Control
               type="color"
               id="exampleColorInput"
               defaultValue="#FFFFFF"
               title="Choose your color"
+              style={{ margin: "0 20px 0" }}
+              onChange={(e) => ChangeColor(e.target.value)}
             />
           </div>
 
@@ -169,6 +259,7 @@ function FabricJS({ height, width }) {
               onClick={(event) => Slider(event)}
             />
           </div>
+          <p>Add Watermark or delete selected element:</p>
           <div style={{ display: "flex" }}>
             <div style={{ margin: "auto" }}>
               <Button onClick={() => Draw()} variant="outline-primary">
@@ -195,7 +286,7 @@ function FabricJS({ height, width }) {
           </div>
         </div>
 
-        <div id="workingSpace" style={{ margin: "5%" }}>
+        <div id="workingSpace" style={{ margin: "3%", alignContent: "center" }}>
           <button
             id="addImage"
             style={{ position: "absolute", visibility: "hidden" }}
@@ -212,8 +303,8 @@ function FabricJS({ height, width }) {
               style={{
                 border: "1px solid #000000",
                 // Set the aspect ratio of the picture to prevent stretching
-                maxWidth: `${500 * (width / height)}px`,
-                maxHeight: "500px",
+                maxWidth: `${600 * (width / height)}px`,
+                maxHeight: "600px",
               }}
             ></canvas>
           </div>
