@@ -28,6 +28,10 @@ function FabricJS({ height, width }) {
   // Invoke the function upon initial rendering of the DOM
   useEffect(() => {
     setCanvas(initCanvas());
+    setTimeout(() => {
+      // Click hidden button to add image to canvas as a background
+      document.getElementById("addImage").click();
+    }, 1000);
   }, []);
 
   // Add text to the canvas
@@ -96,7 +100,7 @@ function FabricJS({ height, width }) {
 
   return (
     <>
-      <div id="rowFabric">
+      <div id="rowFabric" style={{ maxHeight: "100vh", maxWidth: '100vw' }}>
         <div id="sidebarFabric">
           <h1>Test FabricJS</h1>
           <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
@@ -113,11 +117,9 @@ function FabricJS({ height, width }) {
           </div>
           <div style={{ marginBottom: "0" }}>
             <Form.FloatingLabel>Select font:</Form.FloatingLabel>
-            <Form.Select>
+            <Form.Select defaultValue={"helvetica"}>
               <option value="arial">Arial</option>
-              <option value="helvetica" selected>
-                Helvetica
-              </option>
+              <option value="helvetica">Helvetica</option>
               <option value="myriad pro">Myriad Pro</option>
               <option value="delicious">Delicious</option>
               <option value="verdana">Verdana</option>
@@ -158,7 +160,7 @@ function FabricJS({ height, width }) {
           </div>
 
           <div>
-            <p>Transparency:</p>
+            <p>Transparency: {transparency}%</p>
             <Form.Range
               defaultValue="-50"
               min="-100"
@@ -169,35 +171,39 @@ function FabricJS({ height, width }) {
           </div>
           <div style={{ display: "flex" }}>
             <div style={{ margin: "auto" }}>
-              <Button onClick={null} variant="outline-primary">
-                Preview
+              <Button onClick={() => Draw()} variant="outline-primary">
+                Add
               </Button>{" "}
             </div>
             <div style={{ margin: "auto" }}>
-              <Button onClick={() => Download()} variant="primary">
-                Download
+              <Button onClick={() => DeleteObject()} variant="outline-primary">
+                Delete
               </Button>{" "}
             </div>
           </div>
+
+          <div style={{ margin: "30px auto 10px" }} className="d-grid gap-2">
+            <Button
+              onClick={() => {
+                canvas.discardActiveObject().renderAll();
+                Download();
+              }}
+              variant="primary"
+            >
+              Download
+            </Button>{" "}
+          </div>
         </div>
 
-        <div id="workingSpace" style={{ margin: "auto" }}>
-          <button type="button" onClick={() => Draw()}>
-            Draw
-          </button>
-          <button type="button" onClick={() => DeleteObject()}>
-            Delete
-          </button>
-          <button type="button" onClick={() => AddImage()}>
+        <div id="workingSpace" style={{ margin: "5%" }}>
+          <button
+            id="addImage"
+            style={{ position: "absolute", visibility: "hidden" }}
+            type="button"
+            onClick={() => AddImage()}
+          >
             Add Image
           </button>
-          <button
-            type="button"
-            onClick={() => canvas.discardActiveObject().renderAll()}
-          >
-            Deactivate
-          </button>
-          <h3>Transparency: {transparency}%</h3>
           <div>
             <canvas
               id="canvas"
