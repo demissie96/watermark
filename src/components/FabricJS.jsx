@@ -28,8 +28,8 @@ function FabricJS({ height, width }) {
   // Create a function that returns a fabric.Canvas object
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
-      height: 500,
-      width: 800,
+      height: height,
+      width: width,
       backgroundColor: null,
     });
 
@@ -46,11 +46,11 @@ function FabricJS({ height, width }) {
   function Draw() {
     var text = new fabric.Textbox(watermarkText, {
       fill: color,
-      fontSize: 60,
-      width: 350,
+      fontSize: 150,
+      width: 400,
       cursorColor: "blue",
       opacity: opacity,
-      top: 20,
+      top: 60,
       left: 20,
       fontStyle: italic,
       fontWeight: bold,
@@ -281,6 +281,7 @@ function FabricJS({ height, width }) {
             </div>
             <div style={{ margin: "20px auto 10px" }} className="d-grid gap-2">
               <Button
+                id="downloadButton"
                 onClick={() => {
                   canvas.discardActiveObject().renderAll();
                   Download();
