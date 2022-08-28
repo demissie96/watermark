@@ -15,7 +15,7 @@ export function ImageDimensions() {
 // Download the edited picture in canvas
 export function Download() {
   var link = document.createElement("a");
-  link.download = "watermark.png";
-  link.href = document.getElementById("canvas").toDataURL();
+  link.download = "watermark.jpeg";
+  link.href = document.getElementById("canvas").toDataURL("image/jpeg", 0.8);
   link.click();
 }

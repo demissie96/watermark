@@ -308,7 +308,7 @@ function FabricJS({ height, width }) {
               width={height}
               height={width}
               style={{
-                border: "1px solid #000000",
+                border: "1px solid #808080",
                 // Set the aspect ratio of the picture to prevent stretching
                 maxWidth: `${600 * (width / height)}px`,
                 maxHeight: "600px",
