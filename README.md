@@ -13,3 +13,9 @@ Check out the program via this __[link](https://cdko7l.csb.app/)__.
 - React
 - Bootstrap
 - __[FabricJS](http://fabricjs.com/)__
+
+---
+
+![Gif](https://s6.gifyu.com/images/animation_01.png)
+
+![Gif](https://s6.gifyu.com/images/animation_02.png)
