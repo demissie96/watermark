@@ -42,7 +42,6 @@ function FabricJS({ height, width }) {
       borderColor: "red",
       borderScaleFactor: 3,
       cornerStyle: "circle",
-      transparentCorners: false,
       cornerSize: 20,
       cornerStrokeColor: "red",
       cornerColor: "white",
