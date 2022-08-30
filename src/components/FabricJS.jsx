@@ -31,10 +31,21 @@ function FabricJS({ height, width }) {
       height: height,
       width: width,
       backgroundColor: null,
+      borderScaleFactor: 3,
     });
 
   // Invoke the function upon initial rendering of the DOM
   useEffect(() => {
+    fabric.Object.prototype.set({
+      transparentCorners: false,
+      borderColor: "red",
+      borderScaleFactor: 3,
+      cornerStyle: "circle",
+      transparentCorners: false,
+      cornerSize: 20,
+      cornerStrokeColor: "red",
+      cornerColor: "white",
+    });
     setCanvas(initCanvas());
     setTimeout(() => {
       // Click hidden button to add image to canvas as a background
