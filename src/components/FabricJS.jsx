@@ -34,8 +34,9 @@ function FabricJS({ height, width }) {
       borderScaleFactor: 3,
     });
 
-  // Invoke the function upon initial rendering of the DOM
+  // Invoke functions upon initial rendering of the DOM
   useEffect(() => {
+    // Set global border styles on select
     fabric.Object.prototype.set({
       transparentCorners: false,
       borderColor: "red",
@@ -46,6 +47,7 @@ function FabricJS({ height, width }) {
       cornerStrokeColor: "red",
       cornerColor: "white",
     });
+    // Create canvas object
     setCanvas(initCanvas());
     setTimeout(() => {
       // Click hidden button to add image to canvas as a background
