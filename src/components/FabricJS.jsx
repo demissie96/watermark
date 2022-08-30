@@ -55,6 +55,13 @@ function FabricJS({ height, width }) {
       fontStyle: italic,
       fontWeight: bold,
       fontFamily: fontName,
+      borderColor: "blue",
+      borderScaleFactor: 3,
+      cornerStyle: "circle",
+      transparentCorners: false,
+      cornerSize: 20,
+      cornerStrokeColor: "blue",
+      cornerColor: "white",
     });
     canvas.add(text);
   }
