@@ -63,7 +63,7 @@ function App() {
         >
           <RiPenNibFill style={{fontSize: "140px", color: "red"}}/> 
         </div>
-        <img id="my_picture" />
+        <img id="my_picture" alt="uploaded_image"/>
         {uploaded && (
           <div id="canvas-div">
             <div id="layer1">
