@@ -25,17 +25,16 @@ function FabricJS({ height, width }) {
   // Watermark text
   const [watermarkText, setWatermarkText] = useState("Watermark...");
 
-  // Create a function that returns a fabric.Canvas object
-  const initCanvas = () =>
-    new fabric.Canvas("canvas", {
-      height: height,
-      width: width,
-      backgroundColor: null,
-      borderScaleFactor: 3,
-    });
-
   // Invoke functions upon initial rendering of the DOM
   useEffect(() => {
+    // Create a function that returns a fabric.Canvas object
+    const initCanvas = () =>
+      new fabric.Canvas("canvas", {
+        height: height,
+        width: width,
+        backgroundColor: null,
+        borderScaleFactor: 3,
+      });
     // Set global border styles on select
     fabric.Object.prototype.set({
       transparentCorners: false,
@@ -52,9 +51,7 @@ function FabricJS({ height, width }) {
       // Click hidden button to add image to canvas as a background
       document.getElementById("addImage").click();
     }, 1000);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [height, width]);
 
   // Add text to the canvas
   function Draw() {
