@@ -14,18 +14,15 @@ function App() {
 
   function GroupedFunction(e) {
     // Send uploaded image to img element
-    InputToImage(e);
-
-    setTimeout(() => {
+    InputToImage(e, () => {
       // Get uploaded image dimensions to set canvas size
       let imgProps = ImageDimensions();
       setImageHeight(imgProps[0]);
       setImageWidth(imgProps[1]);
-      setTimeout(() => {
-        // Create canvas with conditional rendering after we know the required size of it
-        setUploaded(true);
-      }, 500);
-    }, 200);
+
+      // Create canvas with conditional rendering after we know the required size of it
+      setUploaded(true);
+    });
   }
 
   return (
@@ -61,9 +58,9 @@ function App() {
             position: uploaded ? "absolute" : "relative",
           }}
         >
-          <RiPenNibFill style={{fontSize: "140px", color: "red"}}/> 
+          <RiPenNibFill style={{ fontSize: "140px", color: "red" }} />
         </div>
-        <img id="my_picture" alt="uploaded_image"/>
+        <img id="my_picture" alt="uploaded_image" />
         {uploaded && (
           <div id="canvas-div">
             <div id="layer1">

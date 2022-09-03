@@ -1,7 +1,10 @@
 // Send uploaded image to img element in App.jsx
-export function InputToImage(event) {
+export function InputToImage(event, callback) {
   var image = document.getElementById("my_picture");
   image.src = URL.createObjectURL(event.target.files[0]);
+  image.onload = function () {
+    callback();
+  };
 }
 
 // Get the dimensions of the image and return
