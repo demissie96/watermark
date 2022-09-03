@@ -52,6 +52,8 @@ function FabricJS({ height, width }) {
       // Click hidden button to add image to canvas as a background
       document.getElementById("addImage").click();
     }, 1000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Add text to the canvas
