@@ -1,7 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import { InputToImage, ImageDimensions } from "./Functions";
+import {
+  InputToImage,
+  ImageDimensions,
+  ImageToResize,
+  InputToFirstImage,
+  CanvasToSecondImage,
+} from "./Functions";
 import FabricJS from "./FabricJS";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
@@ -13,15 +19,19 @@ function App() {
   const [imageWidth, setImageWidth] = useState(800);
 
   function GroupedFunction(e) {
-    // Send uploaded image to img element
-    InputToImage(e, () => {
-      // Get uploaded image dimensions to set canvas size
-      let imgProps = ImageDimensions();
-      setImageHeight(imgProps[0]);
-      setImageWidth(imgProps[1]);
+    InputToFirstImage(e, (width, height) => {
+      console.log("Uploaded");
+      ImageToResize(width, height, (canvas) => {
+        CanvasToSecondImage(canvas, () => {
+          // Get uploaded image dimensions to set canvas size
+          let imgProps = ImageDimensions();
+          setImageHeight(imgProps[0]);
+          setImageWidth(imgProps[1]);
 
-      // Create canvas with conditional rendering after we know the required size of it
-      setUploaded(true);
+          // Create canvas with conditional rendering after we know the required size of it
+          setUploaded(true);
+        });
+      });
     });
   }
 
@@ -52,6 +62,11 @@ function App() {
           margin: "auto",
         }}
       >
+        <img
+          id="first_place"
+          alt="first-img"
+          style={{ visibility: "hidden", position: "absolute" }}
+        />
         <div
           style={{
             visibility: uploaded ? "hidden" : "visible",
@@ -60,7 +75,7 @@ function App() {
         >
           <RiPenNibFill style={{ fontSize: "140px", color: "red" }} />
         </div>
-        <img id="my_picture" alt="uploaded_image" />
+
         {uploaded && (
           <div id="canvas-div">
             <div id="layer1">
