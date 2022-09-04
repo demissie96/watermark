@@ -12,13 +12,29 @@ export function InputToFirstImage(event, callback) {
 export function ImageToResize(width, height, callback) {
   console.log(width, height);
 
+  let resizedWidth = width;
+  let resizedHeight = height;
+  let aspectRatio = resizedWidth / resizedHeight;
+
+  if(resizedWidth >= resizedHeight) {
+    if(resizedWidth > 1280) {
+      resizedWidth = 1280;
+      resizedHeight = resizedWidth / aspectRatio;
+    }
+  } else {
+    if(resizedHeight > 1280) {
+      resizedHeight = 1280;
+      resizedWidth = resizedHeight * aspectRatio;
+    }
+  }
+
   var img = document.getElementById("first_place");
 
   console.log("image upload to canvas was successful");
   const canvas = document.createElement("canvas");
   canvas.id = "resize-canvas";
-  canvas.width = width / 2;
-  canvas.height = height / 2;
+  canvas.width = resizedWidth;
+  canvas.height = resizedHeight;
   canvas.style.zIndex = 0;
   canvas.style.position = "relative";
   canvas.style.border = "1px solid";
