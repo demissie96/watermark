@@ -1,5 +1,4 @@
-// Send uploaded image to img element in App.jsx
-
+// Send uploaded image to img element
 export function InputToFirstImage(event, callback) {
   var image = document.getElementById("first_place");
   image.src = URL.createObjectURL(event.target.files[0]);
@@ -9,20 +8,19 @@ export function InputToFirstImage(event, callback) {
   };
 }
 
+// Resize image in hidden canvas
 export function ImageToResize(width, height, callback) {
-  console.log(width, height);
-
   let resizedWidth = width;
   let resizedHeight = height;
   let aspectRatio = resizedWidth / resizedHeight;
 
-  if(resizedWidth >= resizedHeight) {
-    if(resizedWidth > 1280) {
+  if (resizedWidth >= resizedHeight) {
+    if (resizedWidth > 1280) {
       resizedWidth = 1280;
       resizedHeight = resizedWidth / aspectRatio;
     }
   } else {
-    if(resizedHeight > 1280) {
+    if (resizedHeight > 1280) {
       resizedHeight = 1280;
       resizedWidth = resizedHeight * aspectRatio;
     }
@@ -30,7 +28,6 @@ export function ImageToResize(width, height, callback) {
 
   var img = document.getElementById("first_place");
 
-  console.log("image upload to canvas was successful");
   const canvas = document.createElement("canvas");
   canvas.id = "resize-canvas";
   canvas.width = resizedWidth;
@@ -46,26 +43,14 @@ export function ImageToResize(width, height, callback) {
   callback(canvas);
 }
 
+// Send resized image in canvas to a second hidden img element
 export function CanvasToSecondImage(canvas, callback) {
-  console.log("canvas to second image successful");
-
   const image = new Image();
   image.id = "my_picture";
   image.src = canvas.toDataURL("image/jpeg");
   document.body.appendChild(image);
-  image.onload = function() {
-    console.log(`resized image: ${image.width}/${image.height}`);
-    callback();
-  }
-  
-}
-
-// ######################x
-
-export function InputToImage(event, callback) {
-  var image = document.getElementById("my_picture");
-  image.src = URL.createObjectURL(event.target.files[0]);
   image.onload = function () {
+    console.log(`Resized image: ${image.width}/${image.height}`);
     callback();
   };
 }
@@ -73,8 +58,6 @@ export function InputToImage(event, callback) {
 // Get the dimensions of the image and return
 export function ImageDimensions() {
   var img = document.getElementById("my_picture");
-  console.log("Image height: " + img.height);
-  console.log("Image width: " + img.width);
   return [img.height, img.width];
 }
 

@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import "./App.css";
 import {
-  InputToImage,
   ImageDimensions,
   ImageToResize,
   InputToFirstImage,
@@ -18,9 +17,9 @@ function App() {
   const [imageHeight, setImageHeight] = useState(500);
   const [imageWidth, setImageWidth] = useState(800);
 
+  // Set up editor upon upload image
   function GroupedFunction(e) {
     InputToFirstImage(e, (width, height) => {
-      console.log("Uploaded");
       ImageToResize(width, height, (canvas) => {
         CanvasToSecondImage(canvas, () => {
           // Get uploaded image dimensions to set canvas size
