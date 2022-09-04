@@ -323,8 +323,8 @@ function FabricJS({ height, width }) {
           <div>
             <canvas
               id="canvas"
-              width={height}
-              height={width}
+              width={width}
+              height={height}
               style={{
                 border: "1px solid #808080",
                 // Set the aspect ratio of the picture to prevent stretching
