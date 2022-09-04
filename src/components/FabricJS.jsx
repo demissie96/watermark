@@ -57,7 +57,7 @@ function FabricJS({ height, width }) {
   function Draw() {
     var text = new fabric.Textbox(watermarkText, {
       fill: color,
-      fontSize: 150,
+      fontSize: 100,
       width: 400,
       cursorColor: "blue",
       opacity: opacity,
