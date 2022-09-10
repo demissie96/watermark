@@ -234,7 +234,9 @@ function FabricJS({ height, width }) {
                 onChange={(e) => ChangeFontFamily(e.target.value)}
               >
                 <option value="arial">Arial</option>
-                <option value="times new roman">Times New Roman</option>
+                <option value="'DM Serif Display', serif">DM Serif Display</option>
+                <option value="'Dancing Script', cursive">Dancing Script</option>
+                <option value="'Ubuntu', sans-serif">Ubuntu</option>
               </Form.Select>
             </div>
             <div style={{ display: "flex", margin: "0" }}>
