@@ -54,6 +54,12 @@ function App() {
             <Form.Control type="file" onChange={(e) => GroupedFunction(e)} />
           </Form.Group>
         </div>
+        <div style={{ visibility: "hidden"}}>
+          {/* For preload fonts to the browser */}
+          <p style={{ fontFamily: "'DM Serif Display', serif" }}>.</p>
+          <p style={{ fontFamily: "'Dancing Script', cursive" }}>.</p>
+          <p style={{ fontFamily: "'Ubuntu', sans-serif" }}>.</p>
+        </div>
       </div>
       <div
         id="workingSpace"
