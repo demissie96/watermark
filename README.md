@@ -15,6 +15,4 @@ Check out the program via this **[link](https://watermark-mocha.vercel.app/)**.
 
 ---
 
-![Gif](https://s6.gifyu.com/images/animation_01.png)
-
 ![Gif](https://s6.gifyu.com/images/animation_02.png)
